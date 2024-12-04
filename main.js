@@ -17,7 +17,7 @@ const turtle = new RealTurtle(canvas, {
   autoStart: false,
 });
 
-turtle.setSpeed(0.9999); // from 0 - 1 (0 slow, 1 fast)
+turtle.setSpeed(0.999); // from 0 - 1 (0 slow, 1 fast)
 turtle.setLineWidth(3);
 turtle.setStrokeStyle("black");
 turtle.start();
@@ -26,22 +26,7 @@ const ti = new TextInterface(textDiv, "ATO Turtle Program!");
 ti.output("Welcome to our Jersey Customizer!");
 ti.output("In this website, you will be able to choose between three New England Patriots and watch us draw it using functions!")
 
-const drawJersey = (version) => {
-  turtle.penUp();
-  turtle.forward(500);
-  turtle.left(90);
-  turtle.forward(300);
-  turtle.right(90);
-  turtle.penDown();
-  drawBase(3, version);
-  turtle.penUp();
-  turtle.left(90);
-  turtle.forward(450);
-  turtle.left(90);
-  turtle.forward(250);
-}
 
-drawJersey("home");
 /* Comment out the line below once you're writing
  * your own code -- you can also take a look at the
  * code in demo.js for an example. */
@@ -54,7 +39,7 @@ drawJersey("home");
  * where each eye is `size` width and `color`.
  * The total eye width will be size * 2.5
  */
-const drawBase = (size, color) => {
+function drawBase(size, color) {
   let shoulder = "#d4dce2";
   if (color == "home") {
     turtle.setFillStyle("#0c274a");
@@ -124,13 +109,13 @@ const drawBase = (size, color) => {
     turtle.fill();
     turtle.penUp();
     turtle.right(90);
-    turtle.forward(15*size);
+    turtle.forward(15 * size);
     turtle.setFillStyle(shoulder);
   } else {
     turtle.penUp();
-    turtle.forward(size)
+    turtle.forward(size);
     turtle.right(90);
-    
+
   }
   turtle.forward(170 * size);
   turtle.beginPath();
@@ -160,7 +145,7 @@ const drawBase = (size, color) => {
     turtle.fill();
     turtle.penUp();
   }
-};
+}
 
 const drawOne = (size, color) => {
   turtle.beginPath();
@@ -280,7 +265,32 @@ const drawFour = (size, color) => {
   turtle.fill();
 };
 // Test code
+const drawJersey = (version, playerNumber) => {
+  turtle.penUp();
+  turtle.forward(500);
+  turtle.left(90);
+  turtle.forward(300);
+  turtle.right(90);
+  turtle.penDown();
+  ti.output("test")
+  drawBase(3, version);
+  turtle.penUp();
+  turtle.left(90);
+  turtle.forward(350);
+  turtle.left(90);
+  turtle.forward(500);
+  turtle.left()
+  if(playerNumber == 12) {
+    drawOne(1);
+    turtle.penUp();
+    turtle.right(180)
+    turtle.forward(150);
+    turtle.left(180);
+    drawTwo(1);
+  }
+}
 
+drawJersey("home", 12);
 /* main method -- put all of your work in here */
 const main = async () => {
   // Get input...
