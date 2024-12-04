@@ -17,10 +17,24 @@ const turtle = new RealTurtle(canvas, {
   autoStart: false,
 });
 
+turtle.setSpeed(0.9999); // from 0 - 1 (0 slow, 1 fast)
+turtle.setLineWidth(3);
+turtle.setStrokeStyle("black");
+turtle.start();
+
 const ti = new TextInterface(textDiv, "ATO Turtle Program!");
 ti.output("Welcome to our Jersey Customizer!");
 ti.output("In this website, you will be able to choose between three New England Patriots and watch us draw it using functions!")
 
+const drawJersey = (version) => {
+  turtle.penUp();
+  turtle.forward(500);
+  turtle.left(90);
+  turtle.forward(300);
+  turtle.right(90);
+  turtle.penDown();
+  drawBase(3, version);
+}
 /* Comment out the line below once you're writing
  * your own code -- you can also take a look at the
  * code in demo.js for an example. */
@@ -33,6 +47,114 @@ ti.output("In this website, you will be able to choose between three New England
  * where each eye is `size` width and `color`.
  * The total eye width will be size * 2.5
  */
+const drawBase = (size, color) => {
+  let shoulder = "#d4dce2";
+  if (color == "home") {
+    turtle.setFillStyle("#0c274a");
+  } else if (color == "away") {
+    turtle.setFillStyle("White");
+    shoulder = "#0c274a";
+  } else if (color == "throwback") {
+    turtle.setFillStyle("#b10018");
+    shoulder = "white";
+  }
+  turtle.beginPath();
+  turtle.left(90);
+  turtle.forward(50 * size);
+  turtle.left(45);
+  for (let i = 0; i < 2; i++) {
+    turtle.forward(70 * size);
+    turtle.left(90);
+  }
+  turtle.forward(40 * size);
+  turtle.right(135);
+  turtle.forward(200 * size);
+  turtle.left(90);
+  turtle.forward(170 * size);
+  turtle.left(90);
+  turtle.forward(200 * size);
+  turtle.right(135);
+  turtle.forward(40 * size);
+  for (let i = 0; i < 2; i++) {
+    turtle.left(90);
+    turtle.forward(70 * size);
+  }
+  turtle.left(45);
+  turtle.forward(50 * size);
+  turtle.left(15);
+  turtle.arc(246 * size, 30);
+  turtle.closePath();
+  turtle.fill();
+  turtle.penUp();
+  turtle.setFillStyle(shoulder);
+  turtle.left();
+  turtle.left(90);
+  turtle.forward(20 * size);
+  turtle.beginPath();
+  turtle.forward(30 * size);
+  turtle.left(45);
+  turtle.forward(30 * size);
+  turtle.left(90);
+  turtle.penDown();
+  turtle.forward(70 * size);
+  turtle.left();
+  turtle.forward(70 * size);
+  turtle.closePath();
+  turtle.fill();
+  if (color == "throwback") {
+    turtle.setFillStyle("darkBlue");
+    turtle.left(90);
+    turtle.beginPath();
+    turtle.forward(30 * size);
+    turtle.left(45);
+    turtle.forward(30 * size * 0.5);
+    turtle.left(90);
+    turtle.penDown();
+    turtle.forward(70 * size * 0.5);
+    turtle.left();
+    turtle.forward(71 * size * 0.5);
+    turtle.closePath();
+    turtle.fill();
+    turtle.penUp();
+    turtle.right(90);
+    turtle.forward(15*size);
+    turtle.setFillStyle(shoulder);
+  } else {
+    turtle.penUp();
+    turtle.forward(size)
+    turtle.right(90);
+    
+  }
+  turtle.forward(170 * size);
+  turtle.beginPath();
+  turtle.forward(30 * size);
+  turtle.right(45);
+  turtle.forward(30 * size);
+  turtle.penDown();
+  turtle.right(90);
+  turtle.forward(70 * size);
+  turtle.right();
+  turtle.forward(70 * size);
+  turtle.closePath();
+  turtle.fill();
+  if (color == "throwback") {
+    turtle.setFillStyle("darkblue");
+    turtle.right(90);
+    turtle.beginPath();
+    turtle.forward(30 * size);
+    turtle.right(45);
+    turtle.forward(30 * size * 0.5);
+    turtle.right(90);
+    turtle.penDown();
+    turtle.forward(70 * size * 0.5);
+    turtle.right();
+    turtle.forward(70 * size * 0.5);
+    turtle.closePath();
+    turtle.fill();
+    turtle.penUp();
+  }
+};
+
 const drawOne = (size, color) => {
   turtle.beginPath();
   turtle.forward(300);
@@ -59,11 +181,8 @@ const drawOne = (size, color) => {
   turtle.setFillStyle("white");
   turtle.fill();
 };
-turtle.setSpeed(0.98); // from 0 - 1 (0 slow, 1 fast)
-turtle.setLineWidth(10);
-turtle.setStrokeStyle("red");
-turtle.start();
-drawOne();
+
+//drawOne();
 
 const drawTwo = (size, color) => {
   turtle.beginPath();
@@ -111,7 +230,7 @@ const drawTwo = (size, color) => {
   turtle.fill();
 };
 
-drawTwo();
+//drawTwo();
 
 const drawFour = (size, color) => {
   turtle.beginPath();
@@ -153,10 +272,10 @@ const drawFour = (size, color) => {
   turtle.setFillStyle("white");
   turtle.fill();
 };
-drawFour();
+//drawFour();
 
 // Test code
-
+drawJersey("home");
 /* main method -- put all of your work in here */
 const main = async () => {
   // Get input...
@@ -164,7 +283,7 @@ const main = async () => {
   let size = await ti.promptSquare("How big a square?");
 
   // Draw turtle stuff
-  drawSquare(size);
+  
 
   // We need a separate "start" command
   // after the turtle.
