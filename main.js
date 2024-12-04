@@ -192,7 +192,7 @@ const drawTwo = (size, color) => {
   turtle.right(90);
   turtle.forward(150 * size);
   turtle.right(45);
-  turtle.forward(75 * size);
+  turtle.forward(100 * size);
   turtle.right(45);
   turtle.forward(50 * size);
   turtle.left(90);
@@ -214,9 +214,9 @@ const drawTwo = (size, color) => {
   turtle.right(45);
   turtle.forward(100 * size);
   turtle.right(45);
-  turtle.forward(50 * size);
+  turtle.forward(75 * size);
   turtle.left(90);
-  turtle.forward(100 * size);
+  turtle.forward(150 * size);
   turtle.closePath();
   turtle.setFillStyle("white")
   turtle.fill();
