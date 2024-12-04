@@ -34,7 +34,14 @@ const drawJersey = (version) => {
   turtle.right(90);
   turtle.penDown();
   drawBase(3, version);
+  turtle.penUp();
+  turtle.left(90);
+  turtle.forward(450);
+  turtle.left(90);
+  turtle.forward(250);
 }
+
+drawJersey("home");
 /* Comment out the line below once you're writing
  * your own code -- you can also take a look at the
  * code in demo.js for an example. */
@@ -275,7 +282,7 @@ const drawFour = (size, color) => {
 //drawFour();
 
 // Test code
-drawJersey("home");
+
 /* main method -- put all of your work in here */
 const main = async () => {
   // Get input...
