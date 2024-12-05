@@ -17,7 +17,7 @@ const turtle = new RealTurtle(canvas, {
   autoStart: false,
 });
 
-turtle.setSpeed(0.999); // from 0 - 1 (0 slow, 1 fast)
+turtle.setSpeed(0.4); // from 0 - 1 (0 slow, 1 fast)
 turtle.setLineWidth(3);
 turtle.setStrokeStyle("black");
 turtle.start();
@@ -264,6 +264,68 @@ const drawFour = (size, color) => {
   turtle.setFillStyle("white");
   turtle.fill();
 };
+
+const drawBrady = (size) => {
+  // Draw "B"
+  turtle.penDown();
+  turtle.forward(100 * size); // Vertical line
+  turtle.right(90);
+  turtle.arc(25 * size, 180); // Top half-circle
+  turtle.right(180);
+  turtle.arc(25 * size, 180); // Bottom half-circle
+  turtle.right(180);
+  turtle.penUp();
+  turtle.forward(65 * size); // Space between letters
+
+  // Draw "R"
+  turtle.penDown();
+  turtle.right(270);
+  turtle.forward(100 * size); // Vertical line
+  turtle.right(90);
+  turtle.arc(25 * size, 180); // Top half-circle
+  turtle.right(240);
+  turtle.forward(53 * size); // Diagonal line
+  turtle.right(300);
+  turtle.penUp();
+  turtle.forward(80 * size);
+
+  // Draw "A"
+  turtle.penDown();
+  turtle.right(255);
+  turtle.forward(105 * size); // Left slant
+  turtle.right(210);
+  turtle.forward(105 * size); // Right slant
+  turtle.right(180);
+  turtle.forward(50 * size);
+  turtle.right(75);
+  turtle.forward(30 * size); // Middle line
+  turtle.penUp();
+  turtle.forward(40 * size);
+
+  // Draw "D"
+  turtle.penDown();
+  turtle.right(90);
+  turtle.forward(50 * size);
+  turtle.right(180);
+  turtle.forward(100 * size); // Vertical line
+  turtle.right(90);
+  turtle.arc(50 * size, 180); // Curved part of D
+  turtle.penUp();
+  turtle.right(180);
+  turtle.forward(100 * size);
+
+  // Draw "Y"
+  turtle.penDown();
+  turtle.right(270);
+  turtle.forward(65 * size); // Left diagonal
+  turtle.right(40);
+  turtle.forward(40 * size); // Right diagonal
+  turtle.right(180);
+  turtle.forward(40 * size);
+  turtle.right(105);
+  turtle.forward(40 * size); // Vertical line
+  turtle.penUp();
+}
 // Test code
 const drawJersey = (version, playerNumber) => {
   turtle.penUp();
@@ -272,7 +334,6 @@ const drawJersey = (version, playerNumber) => {
   turtle.forward(300);
   turtle.right(90);
   turtle.penDown();
-  ti.output("test")
   drawBase(3, version);
   turtle.penUp();
   turtle.left(90);
@@ -287,33 +348,37 @@ const drawJersey = (version, playerNumber) => {
     turtle.forward(150);
     turtle.left(180);
     drawTwo(1);
+    turtle.penUp();
+    turtle.right(90);
+    turtle.forward(300);
+    turtle.right(90);
+    turtle.forward(500)
+    drawBrady(1);
   }
 }
 
-drawJersey("home", 12);
+
 /* main method -- put all of your work in here */
 const main = async () => {
   // Get input...
 
-  let size = await ti.promptSquare("How big a square?");
 
   // Draw turtle stuff
   
-
+  drawJersey("home", 12);
   // We need a separate "start" command
   // after the turtle.
   turtle.start();
 
-  main();
+  //main();
 };
 
 // Commenting out main for now --
 // we're just testing our function!
-//main();
+main();
 //drawSquare(200);
 //turtle.start();
 
 /* We need a separate "start" command
  * if we are NOT in async mode.
  * uncomment if you change out of async mode */
-// turtle.start();
