@@ -17,7 +17,7 @@ const turtle = new RealTurtle(canvas, {
   autoStart: false,
 });
 
-turtle.setSpeed(0.99); // from 0 - 1 (0 slow, 1 fast)
+turtle.setSpeed(0.4); // from 0 - 1 (0 slow, 1 fast)
 turtle.setLineWidth(3);
 turtle.setStrokeStyle("black");
 turtle.start();
@@ -419,11 +419,10 @@ const drawJersey = (version, playerNumber) => {
   turtle.forward(500);
   turtle.left()
   if(playerNumber == 12) {
-    turtle.setStrokeStyle("white");
+    turtle.setFillStyle("white");
     if(version == "away") {
-      turtle.setStrokeStyle("#0c274a");
+      turtle.setFillStyle("#0c274a");
     }
-    turtle.setStrokeStyle("white");
     drawOne(1);
     turtle.penUp();
     turtle.right(180)
@@ -439,10 +438,11 @@ const drawJersey = (version, playerNumber) => {
     drawBrady(1);
   }
   if(playerNumber == 11) {
-    turtle.setStrokeStyle("white");
     if(version == "away") {
-      turtle.setStrokeStyle("#0c274a");
-    } else 
+      turtle.setFillStyle("#0c274a");
+    } else {
+      turtle.setFillStyle("White");
+    }
     drawOne(1)
     turtle.penUp();
     turtle.right(180)
@@ -471,7 +471,7 @@ let player = await ti.promptNumberInRange("What player do you want? 1: Tom Brady
 if(player == 1) {
   player =  12
 } else {
-  player = 1
+  player = 11
 }
 /* main method -- put all of your work in here */
 const main = async () => {
